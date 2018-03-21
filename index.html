@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+
+    var n1,n2, result=0;
+// Hàm kiểm tra số nguyên
+    function checkInt( n)
+    {
+            if((Number(n)*10)%10==0)
+            return 1;
+        return 0;
+    }
+    function setValue(){
+    n1= Number(document.getElementById("n1").value);
+    n2 = Number(document.getElementById("n2").value);
+    // Kiểm tra là số hay không
+        if(isNaN(n1) || isNaN(n2))
+        {
+            document.getElementById("note").innerHTML = "Bạn cần điền số nguyên vào ô trống!"
+            document.getElementById("n3").value = "Nhập lại";
+            return 0;
+        }
+        // Kiểu tra số nguyên
+        if(checkInt(n1)==0 || checkInt(n2)==0){
+            document.getElementById("note").innerHTML = "Bạn cần điền số nguyên vào ô trống!"
+            document.getElementById("n3").value = "Nhập lại";
+            return 0;
+        }
+
+        // Xử lý ô trống
+        if(n1=="" || n2 ==""){
+            document.getElementById("note").innerHTML = "Bạn phải điển đủ 2 con số nguyên!"
+            document.getElementById("n3").value = "Nhập lại";
+            return 0;
+        }
+    return 1;
+    }
+    function sum()
+    {
+       if (setValue()==1)
+       {
+        result = n1+n2;
+        document.getElementById("n3").value = result;
+       }
+    }
+
+    function rest()
+    {
+        if (setValue()==1)
+       {
+        result = n1-n2;
+        document.getElementById("n3").value = result;
+       }
+    }
+
+    function multiply()
+    {
+        if (setValue()==1)
+       {
+        result = n1*n2;
+        document.getElementById("n3").value = result;
+       }
+    }
+    function devide()
+    {
+        if (setValue()==1)
+       {
+        result = n1/n2;
+        document.getElementById("n3").value = result;
+       }
+    }
+var cout;
+// = 0 : sum
+// = 1 : rest
+// = 2 : multiply
+// = 3 : devide
+    function load(){
+        document.getElementById("sumCheck").checked=true;
+        document.getElementById("restCheck").checked=false;
+        document.getElementById("multiplyCheck").checked=false;
+        document.getElementById("devideCheck").checked=false;
+       cout = 0;
+    }
+    function sumChecked()
+    {
+        document.getElementById("restCheck").checked=false;
+        document.getElementById("multiplyCheck").checked=false;
+        document.getElementById("devideCheck").checked=false;
+        cout = 0;
+    }
+
+    function restChecked()
+    {
+        document.getElementById("sumCheck").checked=false;
+        document.getElementById("multiplyCheck").checked=false;
+        document.getElementById("devideCheck").checked=false;
+        cout = 1;
+    }
+    function multiplyChecked()
+    {
+        document.getElementById("sumCheck").checked=false;
+        document.getElementById("restCheck").checked=false;
+        document.getElementById("devideCheck").checked=false;
+        cout = 2;
+    }
+    
+    function devideChecked()
+    {
+        document.getElementById("sumCheck").checked=false;
+        document.getElementById("multiplyCheck").checked=false;
+        document.getElementById("restCheck").checked=false;
+        cout = 3;
+    }
+    
+    
+    function Caculator()
+    {
+        if( cout == 0)
+        sum();
+        else if( cout == 1)
+                    rest();
+                else    if(cout == 2)
+                        multiply();
+                        else if(cout == 3)
+                                devide();
+
+        
+    }
+
+    //document.getElementById("main").innerHTML = window.main();
+    </script>
+</head>
+<body onload="load()">
+    
+            <h1>Bé tập tính</h1>
+            <div class = "column">
+        <div id="box">
+        <text> Số thứ nhất:</text><input id = "n1" type="text"/>
+        </div>
+        <div id="box">
+        <text> Số thứ hai:</text><input id = "n2" type="text"/>
+        </div>
+        <div id="box">
+        <text> Kết quả:</text><input id = "n3" type="text"/>
+        </div>
+        <div id="box">
+              Thông báo:<p id="note" style = "color:red; float:right;" ></p>
+        </div>
+    </div>
+    <div class = "column" >
+            <input type ="checkbox" id="sumCheck" onclick="if(this.checked){sumChecked()}" />
+            <text>Cộng </text>
+            <input type ="checkbox" id="restCheck" onclick="if(this.checked){restChecked()}"/>
+            <text> Trừ </text><br>
+            <input type ="checkbox" id="multiplyCheck" onclick="if(this.checked){multiplyChecked()}"/>
+            <text>Nhân </text>
+            <input type ="checkbox" id="devideCheck" onclick="if(this.checked){devideChecked()}"/>
+            <text>Chia </text><br>
+            <input type ="button" onclick="Caculator()" value="Tính"/>
+            
+    </div>
+</div>
+        
+    
+</body>
+</html>
